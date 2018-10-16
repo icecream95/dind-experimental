@@ -33,11 +33,11 @@ ENV DIND_COMMIT 52379fa76dee07ca038624d639d9e14f4fb719ff
 
 RUN set -eux; \
 	wget -O /usr/local/bin/dind "https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind"; \
-	chmod +x /usr/local/bin/dind; mkdir -p /etc/docker; echo "{\"experimental\": true}" >> /etc/docker/daemon.json
+	chmod +x /usr/local/bin/dind
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
-RUN echo $PATH; ls /usr/local/bin; find / | grep daemon
+RUN mkdir -p /etc/docker && echo "{\"experimental\": true}" >> /etc/docker/daemon.json
 
 VOLUME /var/lib/docker
 EXPOSE 2375
