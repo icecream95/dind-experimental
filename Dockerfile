@@ -37,6 +37,8 @@ RUN set -eux; \
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
+RUN echo $PATH; ls /usr/local/bin; find / | grep daemon
+
 VOLUME /var/lib/docker
 EXPOSE 2375
 
