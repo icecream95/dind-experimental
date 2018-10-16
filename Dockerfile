@@ -37,10 +37,12 @@ RUN set -eux; \
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh
+
 RUN mkdir -p /etc/docker && echo "{\"experimental\": true}" >> /etc/docker/daemon.json
 
 VOLUME /var/lib/docker
 EXPOSE 2375
 
-ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
+ENTRYPOINT ["dockerd-entrypoint.sh"]
 CMD []
